@@ -508,6 +508,7 @@ components:
           example: 10
         name:
           type: string
+          nullable: false
         users:
           type: array
           items:

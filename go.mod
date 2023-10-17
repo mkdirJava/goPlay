@@ -1,4 +1,4 @@
-module mkdirdev.com/goplayground
+module github.com/mkdirJava/goPlay
 
 go 1.20
 
