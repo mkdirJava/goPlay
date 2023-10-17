@@ -1,0 +1,13 @@
+{
+    "Name": "workflow_one",
+    "Tasks": [    
+        {
+            "Name":"task1",
+            "SubTasks":[
+                {
+                    "Name": "subtask1"
+                }
+            ]
+        }
+    ]
+}

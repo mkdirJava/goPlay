@@ -1,0 +1,601 @@
+openapi: 3.0.3
+info:
+  title: Swagger Petstore - OpenAPI 3.0
+  description: Documentation of a simple state machine that handles applications work
+    state
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: projects@mkdirdev.co.uk
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 0.0.1
+externalDocs:
+  description: Find out more about Mkdir Dev
+  url: http://www.mkdirdev.co.uk
+servers:
+- url: /
+tags:
+- name: Company
+  description: Operations about Company
+- name: User
+  description: Operations about User
+paths:
+  /company:
+    post:
+      tags:
+      - Company
+      summary: Add a new Company to the store
+      description: Add a new Company to the store
+      operationId: addCompany
+      requestBody:
+        description: Create a new company in the store
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Company'
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+        "405":
+          description: Invalid input
+  /company/{companyId}:
+    get:
+      tags:
+      - Company
+      summary: Find Company by ID
+      description: Returns a single pet
+      operationId: getCompanyById
+      parameters:
+      - name: companyId
+        in: path
+        description: ID of Company to return
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Company not found
+    delete:
+      tags:
+      - Company
+      summary: Deletes a Company
+      description: delete a Company
+      operationId: deleteCompany
+      parameters:
+      - name: api_key
+        in: header
+        description: ""
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: companyId
+        in: path
+        description: Company id to delete
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "400":
+          description: Invalid Company value
+  /user:
+    post:
+      tags:
+      - User
+      summary: Add a new User to the store
+      description: Add a new User to the store
+      operationId: addUser
+      requestBody:
+        description: Create a new User
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+        "405":
+          description: Invalid input
+  /user/{userId}:
+    get:
+      tags:
+      - User
+      summary: Find pet by ID
+      description: Returns a single User
+      operationId: getUserById
+      parameters:
+      - name: userId
+        in: path
+        description: ID of User to return
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: User not found
+    delete:
+      tags:
+      - User
+      summary: Deletes a User
+      description: delete a User
+      operationId: deleteUser
+      parameters:
+      - name: api_key
+        in: header
+        description: ""
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: userId
+        in: path
+        description: user id to delete
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "400":
+          description: Invalid User value
+  /task:
+    post:
+      tags:
+      - Task
+      summary: Add a new Task to the store
+      description: Add a new Task to the store
+      operationId: addTask
+      requestBody:
+        description: Create a new user in the store
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Task'
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        "405":
+          description: Invalid input
+  /task/{taskId}:
+    get:
+      tags:
+      - Task
+      summary: Find task by ID
+      description: Returns a single pet
+      operationId: getTaskById
+      parameters:
+      - name: taskId
+        in: path
+        description: ID of Task to return
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Task not found
+    delete:
+      tags:
+      - Task
+      summary: Deletes a Task
+      description: delete a Task
+      operationId: deleteTask
+      parameters:
+      - name: api_key
+        in: header
+        description: ""
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: taskId
+        in: path
+        description: Task id to delete
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "400":
+          description: Invalid Task value
+  /task/subtask/{subtaskId}:
+    get:
+      tags:
+      - Subtask
+      summary: Find task/subtask by ID
+      description: Returns a single pet
+      operationId: getSubtaskById
+      parameters:
+      - name: subtaskId
+        in: path
+        description: ID of Subtask to return
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Subtask not found
+    put:
+      tags:
+      - Subtask
+      summary: update task/subtask by ID
+      description: update task/subtask by ID
+      operationId: updateSubtaskById
+      parameters:
+      - name: subtaskId
+        in: path
+        description: ID of Subtask to return
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      - name: status
+        in: query
+        required: true
+        style: form
+        explode: true
+        schema:
+          $ref: '#/components/schemas/update_status'
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Subtask not found
+    delete:
+      tags:
+      - Subtask
+      summary: Deletes a Subtask
+      description: delete a Subtask
+      operationId: deleteSubtask
+      parameters:
+      - name: api_key
+        in: header
+        description: ""
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: subtaskId
+        in: path
+        description: Subtask id to delete
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "400":
+          description: Invalid Subtask value
+  /workflow/running:
+    post:
+      tags:
+      - WorkflowInstance
+      summary: start a new workflow
+      description: start a new workflow
+      operationId: startWorkflow
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/workflow_running_body'
+      responses:
+        "200":
+          description: Successful operation
+        "405":
+          description: Invalid input
+  /workflow/running/{workflowId}:
+    get:
+      tags:
+      - WorkflowInstance
+      summary: Find a running workflow by ID
+      description: Returns a single workFlow
+      operationId: getWorkflowInstanceById
+      parameters:
+      - name: workflowId
+        in: path
+        description: ID of Workflow to return
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Workflow not found
+    put:
+      tags:
+      - WorkflowInstance
+      summary: update a running instance of Workflow by ID
+      description: update a running instance of Workflow by ID
+      operationId: updateWorkflowInstanceById
+      parameters:
+      - name: workflowId
+        in: path
+        description: ID of Workflow to update
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      - name: status
+        in: query
+        required: true
+        style: form
+        explode: true
+        schema:
+          $ref: '#/components/schemas/update_status'
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Subtask not found
+  /workflow:
+    post:
+      tags:
+      - Workflow
+      summary: Add a new Workflow to the store
+      description: Add a new Workflow to the store
+      operationId: addWorkflow
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/workflow_body'
+      responses:
+        "200":
+          description: Successful operation
+        "405":
+          description: Invalid input
+  /workflow/{workflowId}:
+    get:
+      tags:
+      - Workflow
+      summary: Find workflow by ID
+      description: Returns a single workFlow
+      operationId: getWorkflowById
+      parameters:
+      - name: workflowId
+        in: path
+        description: ID of Workflow to return
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Workflow not found
+    put:
+      tags:
+      - Workflow
+      summary: update a Workflow definition by ID
+      description: update a Workflow definion by ID
+      operationId: updateWorkflowById
+      parameters:
+      - name: workflowId
+        in: path
+        description: ID of Workflow to update
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      - name: status
+        in: query
+        required: true
+        style: form
+        explode: true
+        schema:
+          $ref: '#/components/schemas/update_status'
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Subtask not found
+    delete:
+      tags:
+      - Workflow
+      summary: Deletes a Workflow
+      description: delete a Workflow
+      operationId: deleteWorkflow
+      parameters:
+      - name: api_key
+        in: header
+        description: ""
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: workflowId
+        in: path
+        description: Workflow id to delete
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "400":
+          description: Invalid Workflow value
+components:
+  schemas:
+    Company:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        name:
+          type: string
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+      example:
+        name: name
+        id: 10
+        users:
+        - company_Id: company_Id
+          user_name: user_name
+          id: 10
+        - company_Id: company_Id
+          user_name: user_name
+          id: 10
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        user_name:
+          type: string
+        company_Id:
+          type: string
+      example:
+        company_Id: company_Id
+        user_name: user_name
+        id: 10
+    Task:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        name:
+          type: string
+        assigned_users:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        sub_tasks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Task'
+        comments:
+          type: array
+          items:
+            type: string
+        completed:
+          type: boolean
+      example:
+        comments:
+        - comments
+        - comments
+        name: name
+        sub_tasks:
+        - null
+        - null
+        id: 10
+        assigned_users:
+        - company_Id: company_Id
+          user_name: user_name
+          id: 10
+        - company_Id: company_Id
+          user_name: user_name
+          id: 10
+        completed: true
+    update_status:
+      type: string
+      enum:
+      - update
+      - complete
+      - cancel
+    workflow_running_body:
+      type: object
+      properties:
+        file:
+          type: array
+          items:
+            type: string
+            format: binary
+    workflow_body:
+      type: object
+      properties:
+        file:
+          type: array
+          items:
+            type: string
+            format: binary
